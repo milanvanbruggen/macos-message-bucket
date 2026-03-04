@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB000002AB000002AB000002 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = AB000001AB000001AB000001 /* AppIcon.icns */; };
+		AA000002AA000002AA000002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000001AA000001AA000001 /* Assets.xcassets */; };
 		2811DDF610C13249FAE4E269 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883B3DDEFD709341D0667EC /* Settings.swift */; };
 		38003B0356FD4D6EAED2016C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B6EC1839154F06A94443DE /* AppDelegate.swift */; };
 		53A7246ABB9DE7797F15879E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E2EF6E406CF45218EDDBA /* Message.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB000001AB000001AB000001 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MessageBucket/Resources/AppIcon.icns; sourceTree = SOURCE_ROOT; };
+		AA000001AA000001AA000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MessageBucket/Assets.xcassets; sourceTree = "<group>"; };
 		0178FCF580EB5AB5A2AD500B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		08B6EC1839154F06A94443DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13C18254C678B6196790BF81 /* FileWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWatcher.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 		E615F5EF2BE318E200156EEE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+					AB000001AB000001AB000001 /* AppIcon.icns */,
+					AA000001AA000001AA000001 /* Assets.xcassets */,
 				0178FCF580EB5AB5A2AD500B /* Info.plist */,
 				4C0A2DD44FCD26F549938FF2 /* MessageBucket.entitlements */,
 			);
@@ -116,7 +122,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F269EBEA927F6494FAC5F404 /* Build configuration list for PBXNativeTarget "MessageBucket" */;
 			buildPhases = (
-				300CA284B90C61343773808A /* Sources */,
+					300CA284B90C61343773808A /* Sources */,
+					AC000003AC000003AC000003 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -178,6 +185,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC000003AC000003AC000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB000002AB000002AB000002 /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		409364DC436C33A4357548B2 /* Release */ = {
