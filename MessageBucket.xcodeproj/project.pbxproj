@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2811DDF610C13249FAE4E269 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883B3DDEFD709341D0667EC /* Settings.swift */; };
+		38003B0356FD4D6EAED2016C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B6EC1839154F06A94443DE /* AppDelegate.swift */; };
+		53A7246ABB9DE7797F15879E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E2EF6E406CF45218EDDBA /* Message.swift */; };
+		603B97C4A8ED134B20B2A8F5 /* FileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C18254C678B6196790BF81 /* FileWatcher.swift */; };
+		6EDE452C6922059663C5BDF0 /* MessageBucketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1538D83F9DF52797D2EE1B /* MessageBucketApp.swift */; };
+		781BDEFE224871C2064AFF6B /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15244D913CBD9A35CAF25FBD /* OverlayView.swift */; };
+		7E21E8CE3E3943A2263C4CE8 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB24E5B295BD8405E57AEE0 /* NotificationScheduler.swift */; };
+		ABF67803F93435434816CC0B /* MessageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52421A09D1EE5056785FFFA /* MessageStore.swift */; };
+		BDAC548CAC28E2DDB76D0980 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FE673954341DD567C0C7C /* OverlayWindowController.swift */; };
+		C47CEDDD750A73436E21C0F0 /* MessageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F6D615E8D75501712F287 /* MessageRowView.swift */; };
+		DDE6843EC7FDAD0DF5F99C4F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A43D9AD4AB4318B49D2D0A /* SettingsView.swift */; };
+		DF39C5A7251F1393F9461A2F /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FBABD267C84BB7F2103619 /* MenuBarView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0178FCF580EB5AB5A2AD500B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		08B6EC1839154F06A94443DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		13C18254C678B6196790BF81 /* FileWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWatcher.swift; sourceTree = "<group>"; };
+		15244D913CBD9A35CAF25FBD /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		2883B3DDEFD709341D0667EC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		33A43D9AD4AB4318B49D2D0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		45366F5B266DB18277278818 /* MessageBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessageBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C0A2DD44FCD26F549938FF2 /* MessageBucket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessageBucket.entitlements; sourceTree = "<group>"; };
+		602F6D615E8D75501712F287 /* MessageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRowView.swift; sourceTree = "<group>"; };
+		AA7E2EF6E406CF45218EDDBA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B52421A09D1EE5056785FFFA /* MessageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStore.swift; sourceTree = "<group>"; };
+		BA1538D83F9DF52797D2EE1B /* MessageBucketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBucketApp.swift; sourceTree = "<group>"; };
+		CBB24E5B295BD8405E57AEE0 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
+		D41FE673954341DD567C0C7C /* OverlayWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayWindowController.swift; sourceTree = "<group>"; };
+		F4FBABD267C84BB7F2103619 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		11992FEB01C55F1FE22B102E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				13C18254C678B6196790BF81 /* FileWatcher.swift */,
+				B52421A09D1EE5056785FFFA /* MessageStore.swift */,
+				CBB24E5B295BD8405E57AEE0 /* NotificationScheduler.swift */,
+				2883B3DDEFD709341D0667EC /* Settings.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		18F668D691789969705CCAD1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA7E2EF6E406CF45218EDDBA /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		51EC4EC66E24EC6D8FAD82D9 = {
+			isa = PBXGroup;
+			children = (
+				920FAD42D5355E1F353AE863 /* MessageBucket */,
+				F5D05D7BAFB52486336CCCB5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		89779B1869C6D21D888D3F82 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F4FBABD267C84BB7F2103619 /* MenuBarView.swift */,
+				602F6D615E8D75501712F287 /* MessageRowView.swift */,
+				15244D913CBD9A35CAF25FBD /* OverlayView.swift */,
+				D41FE673954341DD567C0C7C /* OverlayWindowController.swift */,
+				33A43D9AD4AB4318B49D2D0A /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		920FAD42D5355E1F353AE863 /* MessageBucket */ = {
+			isa = PBXGroup;
+			children = (
+				08B6EC1839154F06A94443DE /* AppDelegate.swift */,
+				BA1538D83F9DF52797D2EE1B /* MessageBucketApp.swift */,
+				18F668D691789969705CCAD1 /* Models */,
+				E615F5EF2BE318E200156EEE /* Resources */,
+				11992FEB01C55F1FE22B102E /* Services */,
+				89779B1869C6D21D888D3F82 /* Views */,
+			);
+			path = MessageBucket;
+			sourceTree = "<group>";
+		};
+		E615F5EF2BE318E200156EEE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0178FCF580EB5AB5A2AD500B /* Info.plist */,
+				4C0A2DD44FCD26F549938FF2 /* MessageBucket.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F5D05D7BAFB52486336CCCB5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45366F5B266DB18277278818 /* MessageBucket.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32D4E628FCDCE9868D8662AE /* MessageBucket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F269EBEA927F6494FAC5F404 /* Build configuration list for PBXNativeTarget "MessageBucket" */;
+			buildPhases = (
+				300CA284B90C61343773808A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MessageBucket;
+			packageProductDependencies = (
+			);
+			productName = MessageBucket;
+			productReference = 45366F5B266DB18277278818 /* MessageBucket.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D8EE0960E5ADF06D863C31EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 510C2B900004FEF460D86E40 /* Build configuration list for PBXProject "MessageBucket" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 51EC4EC66E24EC6D8FAD82D9;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32D4E628FCDCE9868D8662AE /* MessageBucket */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		300CA284B90C61343773808A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38003B0356FD4D6EAED2016C /* AppDelegate.swift in Sources */,
+				603B97C4A8ED134B20B2A8F5 /* FileWatcher.swift in Sources */,
+				DF39C5A7251F1393F9461A2F /* MenuBarView.swift in Sources */,
+				53A7246ABB9DE7797F15879E /* Message.swift in Sources */,
+				6EDE452C6922059663C5BDF0 /* MessageBucketApp.swift in Sources */,
+				C47CEDDD750A73436E21C0F0 /* MessageRowView.swift in Sources */,
+				ABF67803F93435434816CC0B /* MessageStore.swift in Sources */,
+				7E21E8CE3E3943A2263C4CE8 /* NotificationScheduler.swift in Sources */,
+				781BDEFE224871C2064AFF6B /* OverlayView.swift in Sources */,
+				BDAC548CAC28E2DDB76D0980 /* OverlayWindowController.swift in Sources */,
+				2811DDF610C13249FAE4E269 /* Settings.swift in Sources */,
+				DDE6843EC7FDAD0DF5F99C4F /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		409364DC436C33A4357548B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MessageBucket/Resources/MessageBucket.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = MessageBucket/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D09D315C97F1DF92D7BB3F38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milanvanbruggen.messagebucket;
+				PRODUCT_NAME = "Message Bucket";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		F5B970B23782E45637D2D5F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MessageBucket/Resources/MessageBucket.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = MessageBucket/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F7736AC2053E06ED294DA1EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milanvanbruggen.messagebucket;
+				PRODUCT_NAME = "Message Bucket";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		510C2B900004FEF460D86E40 /* Build configuration list for PBXProject "MessageBucket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D09D315C97F1DF92D7BB3F38 /* Debug */,
+				F7736AC2053E06ED294DA1EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F269EBEA927F6494FAC5F404 /* Build configuration list for PBXNativeTarget "MessageBucket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5B970B23782E45637D2D5F6 /* Debug */,
+				409364DC436C33A4357548B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D8EE0960E5ADF06D863C31EF /* Project object */;
+}

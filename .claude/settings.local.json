@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:lukebechtel.com)",
+      "Bash(xcode-select -p)",
+      "Bash(swift --version)",
+      "Bash(xcodegen generate)",
+      "Bash(xcodebuild -project MessageBucket.xcodeproj -scheme MessageBucket -configuration Debug build)"
+    ]
+  }
+}
