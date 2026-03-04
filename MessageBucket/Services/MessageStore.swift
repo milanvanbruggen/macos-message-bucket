@@ -43,8 +43,20 @@ final class MessageStore: ObservableObject {
     }
 
     func snooze(_ message: Message) {
-        guard let index = unread.firstIndex(where: { $0.id == message.id }) else { return }
-        unread.remove(at: index)
+        if let index = unread.firstIndex(where: { $0.id == message.id }) {
+            unread.remove(at: index)
+        } else if let index = archived.firstIndex(where: { $0.id == message.id }) {
+            archived.remove(at: index)
+        } else {
+            // already snoozed — no-op
+            return
+        }
         snoozed.insert(message, at: 0)
+    }
+
+    func delete(_ message: Message) {
+        unread.removeAll   { $0.id == message.id }
+        snoozed.removeAll  { $0.id == message.id }
+        archived.removeAll { $0.id == message.id }
     }
 }

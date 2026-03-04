@@ -4,6 +4,9 @@ struct OverlayView: View {
     let message: Message
     let onRead: () -> Void
     let onSnooze: () -> Void
+    let onDelete: () -> Void
+
+    @State private var showingDeleteConfirmation = false
 
     var body: some View {
         ZStack {
@@ -19,6 +22,7 @@ struct OverlayView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(.secondary)
                             .tracking(1.2)
+                            .accessibilityLabel("From: \(source)")
                     }
 
                     Text(message.title)
@@ -41,16 +45,41 @@ struct OverlayView: View {
                     }
                     .buttonStyle(.bordered)
                     .keyboardShortcut(.escape, modifiers: [])
+                    .accessibilityLabel("Snooze message")
+                    .accessibilityHint("Dismiss overlay, message stays unread")
 
                     Button("Read") {
                         onRead()
                     }
                     .buttonStyle(.borderedProminent)
                     .keyboardShortcut(.return, modifiers: [])
+                    .accessibilityLabel("Mark as read")
+                    .accessibilityHint("Mark message as read and archive it")
+
+                    Button(role: .destructive) {
+                        showingDeleteConfirmation = true
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+                    .buttonStyle(.bordered)
+                    .accessibilityLabel("Delete message")
+                    .accessibilityHint("Permanently delete this message")
                 }
             }
             .padding(48)
             .frame(maxWidth: 600)
+        }
+        .confirmationDialog(
+            "Delete \"\(message.title)\"?",
+            isPresented: $showingDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Delete", role: .destructive) {
+                onDelete()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This message will be permanently deleted and cannot be recovered.")
         }
     }
 }

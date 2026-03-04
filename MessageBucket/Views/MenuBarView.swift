@@ -3,6 +3,8 @@ import SwiftUI
 struct MenuBarView: View {
     @ObservedObject var store: MessageStore
     let onSelectMessage: (Message) -> Void
+    let onSnoozeMessage: (Message) -> Void
+    let onDeleteMessage: (Message) -> Void
     let onOpenSettings: () -> Void
     let onQuit: () -> Void
 
@@ -38,6 +40,13 @@ struct MenuBarView: View {
                 MessageRowView(message: message) {
                     onSelectMessage(message)
                 }
+                .contextMenu {
+                    Button(role: .destructive) {
+                        onDeleteMessage(message)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
                 if index < store.unread.count - 1 {
                     Divider().padding(.horizontal, 12)
                 }
@@ -49,6 +58,13 @@ struct MenuBarView: View {
             ForEach(Array(store.snoozed.enumerated()), id: \.element.id) { index, message in
                 MessageRowView(message: message) {
                     onSelectMessage(message)
+                }
+                .contextMenu {
+                    Button(role: .destructive) {
+                        onDeleteMessage(message)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
                 }
                 if index < store.snoozed.count - 1 {
                     Divider().padding(.horizontal, 12)
@@ -100,10 +116,24 @@ struct MenuBarView: View {
                 MessageRowView(message: message) {
                     onSelectMessage(message)
                 }
+                .contextMenu {
+                    Button {
+                        onSnoozeMessage(message)
+                    } label: {
+                        Label("Snooze", systemImage: "moon")
+                    }
+                    Divider()
+                    Button(role: .destructive) {
+                        onDeleteMessage(message)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
                 if index < store.archived.count - 1 {
                     Divider().padding(.horizontal, 12)
                 }
             }
+            .padding(.bottom, 4)
         }
     }
 }
@@ -130,6 +160,8 @@ private struct MenuActionRow: View {
     let badge: Int?
     let action: () -> Void
 
+    @State private var isHovered = false
+
     init(_ title: String, systemImage: String, badge: Int? = nil, action: @escaping () -> Void) {
         self.title = title
         self.systemImage = systemImage
@@ -148,15 +180,23 @@ private struct MenuActionRow: View {
                     Text("\(badge)")
                         .font(.caption2)
                         .fontWeight(.medium)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(isHovered ? .white.opacity(0.8) : .secondary)
                 }
             }
             .font(.callout)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
+            .foregroundStyle(isHovered ? .white : .primary)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 6)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(isHovered ? Color.accentColor : Color.clear)
+            )
+            .padding(.horizontal, 4)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .onHover { isHovered = $0 }
     }
 }
+

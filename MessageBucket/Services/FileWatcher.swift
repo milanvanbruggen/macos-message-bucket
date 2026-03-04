@@ -64,6 +64,11 @@ final class FileWatcher {
         try? FileManager.default.moveItem(at: fileURL, to: destination)
     }
 
+    /// Permanently delete a file from disk.
+    func deleteFile(_ fileURL: URL) {
+        try? FileManager.default.removeItem(at: fileURL)
+    }
+
     // MARK: - Private
 
     private func createDirectoriesIfNeeded() {
