@@ -128,6 +128,52 @@ EOF
 
 Set `scheduled_at` to a time in the near future to test the queue flow, or in the past to trigger delivery immediately.
 
+## Using with Claude Cowork
+
+Message Bucket is designed to work seamlessly with [Claude Cowork](https://www.anthropic.com). To schedule a notification, Claude simply writes a JSON file to the `inbox/` folder. The app picks it up within 2 seconds and delivers it at the specified time.
+
+### Instructions for Claude
+
+To schedule a notification, run the following bash command:
+
+```bash
+cat > ~/Message\ Bucket/inbox/<unique-id>.json << 'EOF'
+{
+  "id": "<unique-id>",
+  "title": "<short title, max 25 chars>",
+  "body": "<full message body, Markdown supported>",
+  "scheduled_at": "<ISO 8601 datetime with timezone>",
+  "source": "Claude Cowork"
+}
+EOF
+```
+
+**Rules:**
+- Replace `<unique-id>` with a unique string (e.g. `task-followup-20260304`). The same ID is used for both the filename and the `id` field to prevent duplicates.
+- `scheduled_at` must be an ISO 8601 datetime **with timezone offset**, e.g. `2026-03-04T15:30:00+01:00`.
+- Set `scheduled_at` to a time **in the future** to queue it for later, or **in the past / now** to deliver it immediately.
+- Keep `title` to 25 characters or fewer — it appears in the menu bar list.
+- `body` supports **Markdown** (bold, italic, bullet lists, etc.).
+
+### Example: schedule a reminder 30 minutes from now
+
+```bash
+SCHEDULED=$(date -v+30M +"%Y-%m-%dT%H:%M:%S%z" | sed 's/\([0-9][0-9]\)$/:\1/')
+cat > ~/Message\ Bucket/inbox/reminder-$(date +%s).json << EOF
+{
+  "id": "reminder-$(date +%s)",
+  "title": "Reminder ⏰",
+  "body": "This is your scheduled reminder.",
+  "scheduled_at": "$SCHEDULED",
+  "source": "Claude Cowork"
+}
+EOF
+```
+
+> **Tip:** Use `date -v+Nm` (macOS) to compute a time N minutes in the future. The `sed` call inserts the `:` separator required by ISO 8601 (e.g. `+0100` → `+01:00`).
+
+---
+
 ## License
 
 MIT
