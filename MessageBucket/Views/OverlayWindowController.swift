@@ -1,6 +1,12 @@
 import AppKit
 import SwiftUI
 
+// Borderless NSWindows refuse key events by default; override to enable keyboard shortcuts.
+private final class OverlayWindow: NSWindow {
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { false }
+}
+
 final class OverlayWindowController: NSWindowController {
     private let message: Message
     private let onRead: () -> Void
@@ -17,7 +23,7 @@ final class OverlayWindowController: NSWindowController {
         self.onDelete = onDelete
 
         let screen = NSScreen.main ?? NSScreen.screens[0]
-        let window = NSWindow(
+        let window = OverlayWindow(
             contentRect: screen.frame,
             styleMask: [.borderless, .fullSizeContentView],
             backing: .buffered,
@@ -47,7 +53,7 @@ final class OverlayWindowController: NSWindowController {
         NSApp.activate(ignoringOtherApps: true)
     }
 
-    private func dismiss() {
+    func dismiss() {
         window?.orderOut(nil)
     }
 }

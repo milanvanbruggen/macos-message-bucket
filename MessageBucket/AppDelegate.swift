@@ -136,6 +136,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func showOverlay(for message: Message) {
         guard settings.showProminentOverlay else { return }
 
+        // If another overlay is visible, close it silently (no status change).
+        overlayController?.dismiss()
+        overlayController = nil
+
         overlayController = OverlayWindowController(
             message: message,
             onRead: { [weak self] in
