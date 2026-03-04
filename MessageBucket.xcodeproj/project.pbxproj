@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB000002AB000002AB000002 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = AB000001AB000001AB000001 /* AppIcon.icns */; };
-		AA000002AA000002AA000002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000001AA000001AA000001 /* Assets.xcassets */; };
 		2811DDF610C13249FAE4E269 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883B3DDEFD709341D0667EC /* Settings.swift */; };
 		38003B0356FD4D6EAED2016C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B6EC1839154F06A94443DE /* AppDelegate.swift */; };
 		53A7246ABB9DE7797F15879E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E2EF6E406CF45218EDDBA /* Message.swift */; };
@@ -16,6 +14,7 @@
 		6EDE452C6922059663C5BDF0 /* MessageBucketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1538D83F9DF52797D2EE1B /* MessageBucketApp.swift */; };
 		781BDEFE224871C2064AFF6B /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15244D913CBD9A35CAF25FBD /* OverlayView.swift */; };
 		7E21E8CE3E3943A2263C4CE8 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB24E5B295BD8405E57AEE0 /* NotificationScheduler.swift */; };
+		AB000002AB000002AB000002 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = AB000001AB000001AB000001 /* AppIcon.icns */; };
 		ABF67803F93435434816CC0B /* MessageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52421A09D1EE5056785FFFA /* MessageStore.swift */; };
 		BDAC548CAC28E2DDB76D0980 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FE673954341DD567C0C7C /* OverlayWindowController.swift */; };
 		C47CEDDD750A73436E21C0F0 /* MessageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F6D615E8D75501712F287 /* MessageRowView.swift */; };
@@ -24,18 +23,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB000001AB000001AB000001 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MessageBucket/Resources/AppIcon.icns; sourceTree = SOURCE_ROOT; };
-		AA000001AA000001AA000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MessageBucket/Assets.xcassets; sourceTree = "<group>"; };
 		0178FCF580EB5AB5A2AD500B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		08B6EC1839154F06A94443DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13C18254C678B6196790BF81 /* FileWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWatcher.swift; sourceTree = "<group>"; };
 		15244D913CBD9A35CAF25FBD /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		2883B3DDEFD709341D0667EC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		33A43D9AD4AB4318B49D2D0A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		45366F5B266DB18277278818 /* MessageBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessageBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		45366F5B266DB18277278818 /* Message Bucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Message Bucket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0A2DD44FCD26F549938FF2 /* MessageBucket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessageBucket.entitlements; sourceTree = "<group>"; };
 		602F6D615E8D75501712F287 /* MessageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRowView.swift; sourceTree = "<group>"; };
+		AA000001AA000001AA000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MessageBucket/Assets.xcassets; sourceTree = "<group>"; };
 		AA7E2EF6E406CF45218EDDBA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		AB000001AB000001AB000001 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MessageBucket/Resources/AppIcon.icns; sourceTree = SOURCE_ROOT; };
 		B52421A09D1EE5056785FFFA /* MessageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStore.swift; sourceTree = "<group>"; };
 		BA1538D83F9DF52797D2EE1B /* MessageBucketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBucketApp.swift; sourceTree = "<group>"; };
 		CBB24E5B295BD8405E57AEE0 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
@@ -99,8 +98,8 @@
 		E615F5EF2BE318E200156EEE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-					AB000001AB000001AB000001 /* AppIcon.icns */,
-					AA000001AA000001AA000001 /* Assets.xcassets */,
+				AB000001AB000001AB000001 /* AppIcon.icns */,
+				AA000001AA000001AA000001 /* Assets.xcassets */,
 				0178FCF580EB5AB5A2AD500B /* Info.plist */,
 				4C0A2DD44FCD26F549938FF2 /* MessageBucket.entitlements */,
 			);
@@ -110,7 +109,7 @@
 		F5D05D7BAFB52486336CCCB5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				45366F5B266DB18277278818 /* MessageBucket.app */,
+				45366F5B266DB18277278818 /* Message Bucket.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,8 +121,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F269EBEA927F6494FAC5F404 /* Build configuration list for PBXNativeTarget "MessageBucket" */;
 			buildPhases = (
-					300CA284B90C61343773808A /* Sources */,
-					AC000003AC000003AC000003 /* Resources */,
+				300CA284B90C61343773808A /* Sources */,
+				AC000003AC000003AC000003 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -133,7 +132,7 @@
 			packageProductDependencies = (
 			);
 			productName = MessageBucket;
-			productReference = 45366F5B266DB18277278818 /* MessageBucket.app */;
+			productReference = 45366F5B266DB18277278818 /* Message Bucket.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +142,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2630;
 			};
 			buildConfigurationList = 510C2B900004FEF460D86E40 /* Build configuration list for PBXProject "MessageBucket" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -155,7 +154,6 @@
 			);
 			mainGroup = 51EC4EC66E24EC6D8FAD82D9;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -163,6 +161,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC000003AC000003AC000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB000002AB000002AB000002 /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		300CA284B90C61343773808A /* Sources */ = {
@@ -186,17 +195,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXResourcesBuildPhase section */
-		AC000003AC000003AC000003 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AB000002AB000002AB000002 /* AppIcon.icns in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin XCBuildConfiguration section */
 		409364DC436C33A4357548B2 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -204,7 +202,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MessageBucket/Resources/MessageBucket.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				INFOPLIST_FILE = MessageBucket/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -248,9 +249,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -272,6 +275,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.milanvanbruggen.messagebucket;
 				PRODUCT_NAME = "Message Bucket";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
@@ -284,7 +288,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MessageBucket/Resources/MessageBucket.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				INFOPLIST_FILE = MessageBucket/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -328,9 +335,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -345,6 +354,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.milanvanbruggen.messagebucket;
 				PRODUCT_NAME = "Message Bucket";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;
