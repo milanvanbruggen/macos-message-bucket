@@ -13,6 +13,8 @@ final class OverlayWindowController: NSWindowController {
     private let onSnooze: () -> Void
     private let onDelete: () -> Void
 
+    private var eventMonitor: Any?
+
     init(message: Message,
          onRead: @escaping () -> Void,
          onSnooze: @escaping () -> Void,
@@ -51,9 +53,30 @@ final class OverlayWindowController: NSWindowController {
     func present() {
         window?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
+
+        // Local monitor handles ESC and Return reliably regardless of SwiftUI focus.
+        eventMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            guard let self else { return event }
+            switch event.keyCode {
+            case 53: // ESC → snooze
+                self.dismiss()
+                self.onSnooze()
+                return nil
+            case 36: // Return → mark as read
+                self.dismiss()
+                self.onRead()
+                return nil
+            default:
+                return event
+            }
+        }
     }
 
     func dismiss() {
+        if let monitor = eventMonitor {
+            NSEvent.removeMonitor(monitor)
+            eventMonitor = nil
+        }
         window?.orderOut(nil)
     }
 }

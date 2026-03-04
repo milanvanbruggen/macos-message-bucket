@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 // MARK: - Overlay view
 
@@ -10,32 +11,19 @@ struct OverlayView: View {
 
     @State private var showingDeleteConfirmation = false
 
-    // ── Grid constants ───────────────────────────────────────────────────────
-    // All text uses .body monospaced (13 pt on macOS).
-    // Natural line height ≈ 16 pt. Added lineSpacing = 8 → total pitch = 24 pt.
-    // Font ascender above baseline ≈ 11 pt.
-    // We want ruled lines to sit ~4 pt below each baseline:
-    //   firstRuledY = topPadding + ascender + 4 = 32 + 11 + 4 = 47 ≈ 48 (2 × 24)
-    private let linePitch:       CGFloat = 25
-    private let lineSpacingBody: CGFloat = 9   // adds to the 16 pt natural height → total pitch = 25
-    private let ruledStartY:     CGFloat = 47  // first ruled line y from card top
-    private let topPadding:      CGFloat = 28
-    private let hPadding:        CGFloat = 32
-    private let bottomPadding:   CGFloat = 16
-
-    private let bodyFont = Font.system(.body, design: .monospaced)
+    // ── Grid constants ────────────────────────────────────────────────────────
+    // The NSTextView enforces exactly 25 pt line height for every line.
+    // Ruled lines are drawn at the actual baseline positions from the layout
+    // manager, so there is no arithmetic to guess or tune.
+    private let linePitch:    CGFloat = 25
+    private let hPadding:     CGFloat = 32
+    private let topPadding:   CGFloat = 28
+    private let bottomPadding: CGFloat = 16
 
     var body: some View {
         ZStack {
             VisualEffectView(material: .hudWindow, blendingMode: .behindWindow)
                 .ignoresSafeArea()
-
-            // Hidden ESC → Snooze (always captured regardless of focus)
-            Button("") { onSnooze() }
-                .keyboardShortcut(.escape, modifiers: [])
-                .frame(width: 0, height: 0)
-                .opacity(0)
-                .accessibilityHidden(true)
 
             GeometryReader { geo in
                 VStack(spacing: 20) {
@@ -43,63 +31,21 @@ struct OverlayView: View {
                     let cardWidth  = min(geo.size.width * 0.75, 960)
 
                     ZStack(alignment: .topLeading) {
-                        // ── Paper surface ────────────────────────────────────
+                        // ── Paper surface ─────────────────────────────────────
                         RoundedRectangle(cornerRadius: 16)
                             .fill(.white.opacity(0.93))
 
-                        // ── Ruled lines ──────────────────────────────────────
-                        RuledLinesView(linePitch: linePitch, startY: ruledStartY)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                        // ── Scrollable ruled paper ────────────────────────────
+                        PaperView(
+                            message: message,
+                            linePitch: linePitch,
+                            hPadding: hPadding,
+                            topPadding: topPadding,
+                            bottomPadding: bottomPadding
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
 
-                        // ── Card content ─────────────────────────────────────
-                        VStack(alignment: .leading, spacing: 0) {
-
-                            // Source header (bold, indigo)
-                            if let source = message.source {
-                                Text("# \(source)")
-                                    .font(bodyFont)
-                                    .fontWeight(.bold)
-                                    .foregroundStyle(Color(hue: 0.62, saturation: 0.55, brightness: 0.52))
-                                    .tracking(0.4)
-                                    .lineSpacing(lineSpacingBody)
-                                    .accessibilityLabel("From: \(source)")
-                            }
-
-                            // Title (semibold, near-black)
-                            Text(message.title)
-                                .font(bodyFont)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color(.black).opacity(0.85))
-                                .multilineTextAlignment(.leading)
-                                .lineSpacing(lineSpacingBody)
-                                .padding(.top, lineSpacingBody)
-
-                            // Divider (single line of em-dashes)
-                            Text(String(repeating: "─", count: 80))
-                                .font(bodyFont)
-                                .foregroundStyle(Color(.black).opacity(0.15))
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                                .lineSpacing(lineSpacingBody)
-                                .padding(.top, lineSpacingBody)
-
-                            // Body
-                            ScrollView {
-                                Text(LocalizedStringKey(message.body))
-                                    .font(bodyFont)
-                                    .foregroundStyle(Color(.black).opacity(0.72))
-                                    .multilineTextAlignment(.leading)
-                                    .lineSpacing(lineSpacingBody)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .padding(.top, lineSpacingBody)
-
-                        }
-                        .padding(.horizontal, hPadding)
-                        .padding(.top, topPadding)
-                        .padding(.bottom, bottomPadding)
-
-                        // ── Delete — top-right, separated from main actions ──
+                        // ── Delete — top-right, separated from main actions ───
                         HStack {
                             Spacer()
                             VStack {
@@ -144,7 +90,6 @@ struct OverlayView: View {
                             Label("Mark as Read", systemImage: "checkmark")
                         }
                         .buttonStyle(OverlayButtonStyle(filled: true))
-                        .keyboardShortcut(.return, modifiers: [])
                         .accessibilityLabel("Mark as read")
                         .accessibilityHint("Mark message as read and archive it")
                     }
@@ -163,6 +108,206 @@ struct OverlayView: View {
         } message: {
             Text("This message will be permanently deleted and cannot be recovered.")
         }
+    }
+}
+
+// MARK: - PaperView (NSScrollView + RuledTextView)
+
+/// Wraps an NSScrollView whose document view is a RuledTextView.
+/// The RuledTextView draws horizontal ruled lines at the actual baseline
+/// of every text line — no arithmetic needed.
+private struct PaperView: NSViewRepresentable {
+    let message: Message
+    let linePitch: CGFloat
+    let hPadding: CGFloat
+    let topPadding: CGFloat
+    let bottomPadding: CGFloat
+
+    func makeNSView(context: Context) -> NSScrollView {
+        let textView = RuledTextView()
+        textView.linePitch = linePitch
+        textView.isEditable = false
+        textView.isSelectable = false
+        textView.drawsBackground = false
+        textView.textContainerInset = NSSize(width: hPadding, height: topPadding)
+        textView.textContainer?.lineFragmentPadding = 0
+        textView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        textView.setContentHuggingPriority(.defaultLow, for: .vertical)
+
+        // Allow the text view to grow taller than its clip view so scrolling works
+        textView.isVerticallyResizable = true
+        textView.isHorizontallyResizable = false
+        textView.autoresizingMask = [.width]
+
+        let scrollView = NSScrollView()
+        scrollView.hasVerticalScroller = false
+        scrollView.hasHorizontalScroller = false
+        scrollView.drawsBackground = false
+        scrollView.documentView = textView
+        scrollView.contentView.postsBoundsChangedNotifications = false
+
+        applyAttributedString(to: textView)
+        return scrollView
+    }
+
+    func updateNSView(_ scrollView: NSScrollView, context: Context) {
+        guard let textView = scrollView.documentView as? RuledTextView else { return }
+        applyAttributedString(to: textView)
+    }
+
+    // MARK: – Build attributed string
+
+    private func applyAttributedString(to textView: RuledTextView) {
+        let full = NSMutableAttributedString()
+
+        // ── Shared paragraph style (25 pt locked line height) ─────────────────
+        let para = NSMutableParagraphStyle()
+        para.minimumLineHeight = linePitch
+        para.maximumLineHeight = linePitch
+
+        // ── Monospaced body font ───────────────────────────────────────────────
+        let bodyFont = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+        let boldFont = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .bold)
+        let semiFont = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .semibold)
+
+        let bodyColor   = NSColor.black.withAlphaComponent(0.72)
+        let titleColor  = NSColor.black.withAlphaComponent(0.85)
+        let sourceColor = NSColor(hue: 0.62, saturation: 0.55, brightness: 0.52, alpha: 1)
+        let dividerColor = NSColor.black.withAlphaComponent(0.15)
+
+        func attrs(_ font: NSFont, _ color: NSColor) -> [NSAttributedString.Key: Any] {
+            [.font: font, .foregroundColor: color, .paragraphStyle: para, .baselineOffset: 4]
+        }
+
+        // Source header
+        if let source = message.source {
+            full.append(NSAttributedString(
+                string: "# \(source)\n",
+                attributes: attrs(boldFont, sourceColor)
+            ))
+        }
+
+        // Title
+        full.append(NSAttributedString(
+            string: "\(message.title)\n",
+            attributes: attrs(semiFont, titleColor)
+        ))
+
+        // Divider
+        full.append(NSAttributedString(
+            string: "\(String(repeating: "─", count: 80))\n",
+            attributes: attrs(bodyFont, dividerColor)
+        ))
+
+        // Body — parse markdown, fall back to plain text
+        let bodyAttr: NSAttributedString
+        if let md = try? NSAttributedString(
+            markdown: message.body,
+            options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+        ) {
+            let mutableBody = NSMutableAttributedString(attributedString: md)
+            // Apply our paragraph style and base font/color to the whole body,
+            // but preserve bold/italic runs from markdown.
+            mutableBody.enumerateAttributes(
+                in: NSRange(location: 0, length: mutableBody.length)
+            ) { existingAttrs, range, _ in
+                var mergedAttrs = attrs(bodyFont, bodyColor)
+                // Preserve bold/italic from markdown by checking the existing font's traits
+                if let existingFont = existingAttrs[.font] as? NSFont {
+                    let traits = existingFont.fontDescriptor.symbolicTraits
+                    let isBold   = traits.contains(.bold)
+                    let isItalic = traits.contains(.italic)
+                    if isBold && isItalic {
+                        mergedAttrs[.font] = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .bold)
+                    } else if isBold {
+                        mergedAttrs[.font] = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .bold)
+                    } else if isItalic {
+                        mergedAttrs[.font] = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+                    }
+                }
+                mutableBody.setAttributes(mergedAttrs, range: range)
+            }
+            bodyAttr = mutableBody
+        } else {
+            bodyAttr = NSAttributedString(string: message.body, attributes: attrs(bodyFont, bodyColor))
+        }
+        full.append(bodyAttr)
+
+        // Bottom padding — add a few blank lines so text doesn't end flush at card bottom
+        full.append(NSAttributedString(
+            string: "\n",
+            attributes: attrs(bodyFont, .clear)
+        ))
+
+        textView.textStorage?.setAttributedString(full)
+    }
+}
+
+// MARK: - RuledTextView
+
+/// NSTextView subclass that draws horizontal rules at each text baseline.
+/// Lines are drawn BEFORE calling super.draw() so glyphs render on top.
+final class RuledTextView: NSTextView {
+
+    /// Must be set after init; matches the paragraph style's locked line height.
+    var linePitch: CGFloat = 25
+
+    private let ruleColor = NSColor(hue: 0.62, saturation: 0.22, brightness: 0.88, alpha: 1)
+
+    override func draw(_ dirtyRect: NSRect) {
+        // Draw ruled lines first — text glyphs render on top via super.draw()
+        drawRuledLines(in: dirtyRect)
+        super.draw(dirtyRect)
+    }
+
+    private func drawRuledLines(in dirtyRect: NSRect) {
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer
+        else { return }
+
+        // Make sure layout is complete before querying line fragments
+        layoutManager.ensureLayout(for: textContainer)
+
+        let glyphRange = layoutManager.glyphRange(for: textContainer)
+        let containerOrigin = self.textContainerOrigin  // accounts for textContainerInset
+
+        ruleColor.setStroke()
+        let path = NSBezierPath()
+        path.lineWidth = 0.5
+
+        let font = self.font ?? NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        var lastViewY: CGFloat = -1
+
+        layoutManager.enumerateLineFragments(
+            forGlyphRange: glyphRange
+        ) { [weak self] (_, usedRect, _, _, _) in
+            guard let self = self else { return }
+            // usedRect is in text-container coordinates.
+            // Baseline Y in container coords: bottom of usedRect + descender (descender is negative)
+            let baselineY = usedRect.maxY + font.descender
+            let viewY = baselineY + containerOrigin.y
+            lastViewY = viewY
+
+            if viewY >= dirtyRect.minY - 1 && viewY <= dirtyRect.maxY + 1 {
+                path.move(to: NSPoint(x: 0, y: viewY))
+                path.line(to: NSPoint(x: self.bounds.width, y: viewY))
+            }
+        }
+
+        // Continue drawing lines below the last text line to fill the whole card.
+        if lastViewY > 0 {
+            var y = lastViewY + linePitch
+            while y <= bounds.height {
+                if y >= dirtyRect.minY - 1 && y <= dirtyRect.maxY + 1 {
+                    path.move(to: NSPoint(x: 0, y: y))
+                    path.line(to: NSPoint(x: bounds.width, y: y))
+                }
+                y += linePitch
+            }
+        }
+
+        path.stroke()
     }
 }
 
@@ -215,33 +360,6 @@ private struct OverlayButtonStyle: ButtonStyle {
     private var shadowOpacity: Double { filled ? 0.30 : (small ? 0.08 : 0.14) }
     private var shadowRadius: CGFloat { filled ? 10 : (small ? 4 : 6) }
     private var shadowY: CGFloat { filled ? 5 : (small ? 2 : 3) }
-}
-
-// MARK: - Ruled lines
-
-/// Draws horizontal lines starting at `startY`, spaced `linePitch` apart.
-/// `startY` is computed from the typography constants so lines always sit
-/// just below each text baseline without any runtime measurement.
-struct RuledLinesView: View {
-    let linePitch: CGFloat
-    let startY: CGFloat
-
-    var body: some View {
-        Canvas { ctx, size in
-            var y = startY
-            while y <= size.height {
-                var path = Path()
-                path.move(to: CGPoint(x: 0, y: y))
-                path.addLine(to: CGPoint(x: size.width, y: y))
-                ctx.stroke(
-                    path,
-                    with: .color(Color(hue: 0.62, saturation: 0.22, brightness: 0.88)),
-                    lineWidth: 0.5
-                )
-                y += linePitch
-            }
-        }
-    }
 }
 
 // MARK: - Visual effect blur
